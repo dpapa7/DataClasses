@@ -1,0 +1,68 @@
+from dataclasses import dataclass, field
+from datetime import date, datetime
+
+class Orders:
+    OrderID: int
+    CustomerID: int
+    SalesPersonID: int
+    PickedbyPersonID: int
+    ContactPersonID: int
+    BackorderID: int
+    OrderDate: date
+    ExpectedDeliveryDate: date
+    CustomerPurchaseOrderNumber: int
+    IsUndersupplyBackordered: bool
+    Comments: str
+    DeliveryInstructions: str
+    InternalComments: str
+    PickingCompletedWhen: datetime
+    LastEditedBy: int
+    LastEditedWhen: datetime
+
+    def __gt__(self, other):
+        return self.OrderID > other.OrderID
+
+    def __ge__(self, other):
+        return self.OrderID >= other.OrderID
+
+class Invoices:
+    InvoiceID : int
+    CustomerID: int
+    BillToCustomerID: int
+    OrderID: int
+    DeliveryMethodID: int
+    ContactPersonID: int
+    AccountPersonID: int
+    SalesPersonID: int
+    PackedByPersonID: int
+    InvoiceDate: date
+    CustomerPurchaseOrderNumber: int
+    IsCreditNote: bool
+    CreditNoteReason: str
+    Comments: str
+    DeliveryInstructions: str
+    InternalComments: str
+    TotalDryItems: int
+    TotalChillerItems: int
+
+    DeliveryRun: None
+    RunPosition: None
+
+    ReturnedDeliveryData: dict
+    ConfirmedDeliveryTime: datetime
+    ConfirmedReceivedBy: str 
+    LastEditedBy: int
+    LastEditedWhen: datetime
+
+    def __gt__(self, other):
+        return self.InvoiceID > other.InvoiceID
+
+    def __ge__(self, other):
+        return self.InvoiceID >= other.InvoiceID
+
+
+class Customers:
+    CustomerID: int
+    CustomerName: str
+    BillToCustomerID: int
+    CustomerCategoryID: int
